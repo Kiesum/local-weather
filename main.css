@@ -20,34 +20,6 @@ body {
   display: inline-block;
 }
 
-.Rain {
-  width: 75px;
-  height: 75px;
-  background-image: url(img/rain.png);
-  background-repeat: no-repeat;
-}
-
-.Clouds{
-  width: 75px;
-  height: 75px;
-  background-image: url(img/clouds.png);
-  background-repeat: no-repeat;
-}
-
-.Clear {
-  width: 75px;
-  height: 75px;
-  background-image: url(img/Sun.png);
-  background-repeat: no-repeat;
-}
-
-.Snow {
-  width: 75px;
-  height: 75px;
-  background-image: url(img/hail.png);
-  background-repeat: no-repeat;
-}
-
 .active {
   font-weight: bold;
 }
