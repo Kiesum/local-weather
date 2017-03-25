@@ -13,7 +13,11 @@ $(function() {
       success: function(data) {
         console.log(data);
         $('#location').html(data.name + ", " + data.sys.country);
+        $('.loader').remove();
         temperatureKelvin = data.main.temp;
+        weatherIcon = data.weather[0].icon;
+        $('#weather').attr('src', 'http://openweathermap.org/img/w/' + weatherIcon + '.png');
+        $('.toggle-btn').addClass('visible');
         toCelcius();
       }
      }); 
@@ -23,30 +27,29 @@ $(function() {
       if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(updatePosition);
       } else {
-          x.innerHTML = "Geolocation is not supported by this browser.";
+          $('#location').innerHTML = "Geolocation is not supported by this browser.";
       }
   }
 
   function toCelcius() {
     temperatureCelcius = Math.floor(temperatureKelvin - 273.15);
-    $('#temperature').html(temperatureCelcius + " &degC");
+    $('#temperature').html(temperatureCelcius);
   } 
 
   function toFarenheit() {
     temperatureFarenheit = Math.floor(9/5 * (temperatureKelvin - 273) + 32);
-    $('#temperature').html(temperatureFarenheit + " &degF");
+    $('#temperature').html(temperatureFarenheit);
   }
-  // function updatePosition(position) {
-  //     var lat = position.coords.latitude;
-  //     var lon = position.coords.longitude; 
-  //     getQuote(lat, lon);
-  // }
 
   $('#farenheit').on('click', function() {
+    $('#celcius').removeClass('active');
+    $(this).addClass('active');
     toFarenheit();
   });
 
   $('#celcius').on('click', function() {
+    $('#farenheit').removeClass('active');
+    $(this).addClass('active');
     toCelcius();
   });
 
